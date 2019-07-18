@@ -28,7 +28,12 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: require.resolve("babel-loader"),
+          // options: {
+          //   "presets": ["@babel/preset-env", "@babel/preset-react"]
+          //     .map(require.resolve),
+          //   "plugins": ["@babel/plugin-proposal-class-properties"].map(require.resolve)
+          // }, //THIS WORKS
         }
       },
 
@@ -39,7 +44,7 @@ module.exports = {
       // { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'].map(require.resolve)
       },
     ]
   },
